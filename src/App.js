@@ -8,6 +8,7 @@ const frontContent = "❓";
 function App() {
   const [cards, dealWithCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState({});
+  const [flippedCardsNum, setFlippedCardsNum] = useState(0);
   
   useEffect(() => {
     const initialCards = [];
@@ -38,11 +39,38 @@ function App() {
     dealWithCards(shuffledCards);
   }, []);
 
-  const handleCardFlip = (cardId) => {
+  // Helper function to create delays
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+  
+const handleCardFlip = async (cardId) => {
+  // Prevent clicking if 2 cards are already flipped
+  if (flippedCardsNum >= 2) {
+    return;
+  }
+
+  if (flippedCardsNum === 0) {
+    // First card: flip it and keep it open
+    setFlippedCardsNum(1);
     setFlippedCards(prev => ({
       ...prev,
-      [cardId]: !prev[cardId]
+      [cardId]: true
     }));
+  } else if (flippedCardsNum === 1) {
+    // Second card: flip it, show for 2 seconds, then close both
+    setFlippedCardsNum(2);
+    setFlippedCards(prev => ({
+      ...prev,
+      [cardId]: true
+    }));
+    
+    // Wait 2 seconds
+    await delay(2000);
+    
+    // Close all cards and reset counter
+    setFlippedCards({});
+    setFlippedCardsNum(0);
+    }
   };
 
   // Shuffle the array
