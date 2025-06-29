@@ -1,0 +1,26 @@
+.score {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #8e9aaf 0%, #9ba3b4 100%);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 16px;
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  min-width: 120px;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.score:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}

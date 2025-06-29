@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
+import './components/styles.css'
 //import './App.css';
 
 const values = ["🐶", "🐱", "🐼", "🦊", "🐵", "🐸", "🐷", "🐥"];
@@ -9,6 +10,7 @@ function App() {
   const [cards, dealWithCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState({});
   const [flippedCardsNum, setFlippedCardsNum] = useState(0);
+  const [stepsMade, UpdateSteps] = useState(0)
   
   useEffect(() => {
     const initialCards = [];
@@ -67,9 +69,10 @@ const handleCardFlip = async (cardId) => {
     // Wait 2 seconds
     await delay(2000);
     
-    // Close all cards and reset counter
+    // Close all cards, reset counter, and update steps made
     setFlippedCards({});
     setFlippedCardsNum(0);
+    UpdateSteps(stepsMade + 1);
     }
   };
 
@@ -114,6 +117,9 @@ const handleCardFlip = async (cardId) => {
       <button onClick={handleShuffle} style={{gridColumn: '1 / -1', marginTop: '20px'}}>
         Shuffle Cards
       </button>
+      <h6 class="score">
+        {stepsMade} Steps Made
+      </h6>
     </div>
   );
 }
