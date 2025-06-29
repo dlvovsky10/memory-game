@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
-import './components/styles.css';
+import './App.css';
 
 const values = ["🐶", "🐱", "🐼", "🦊", "🐵", "🐸", "🐷", "🐥"];
 const frontContent = "❓";
